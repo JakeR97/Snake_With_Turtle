@@ -1,10 +1,11 @@
 import turtle
+from turtle import Screen
 import random
 
 #Set up window
 gameWindow = turtle.Screen()
 gameWindow.title("Jake's Snake")
-gameWindow.screensize(900, 600, "black")
+gameWindow.screensize(600, 600, "black")
 gameWindow.setup(width=.9, height=.9, startx=None, starty=None)
 gameWindow.listen()
 gameWindow.mode(mode="logo")
@@ -41,13 +42,11 @@ border.color("white")
 border.pensize(4)
 border.pu()
 border.ht()
-border.setpos(-400, -300)
+border.setpos(-200, -200)
 border.pd()
 border.st()
-for x in range(2):
-  border.fd(600)
-  border.rt(90)
-  border.fd(950)
+for x in range(4):
+  border.fd(400)
   border.rt(90)
 border.ht()
 
@@ -57,9 +56,9 @@ drawScore.ht()
 drawScore.color("white")
 drawScore.speed(0)
 drawScore.pu()
-drawScore.setpos(-550, 200)
+drawScore.setpos(-450, 200)
 drawScore.pd()
-drawScore._write("Score: " + str(score), align="left", font=(20))
+drawScore._write("Score: " + str(score), align="left", font=("Arial", 24, "normal"))
 
 #Create "player"
 player = turtle.Turtle()
@@ -70,7 +69,7 @@ player.turtlesize(0.5, 0.5, 1)
 player.color("white")
 player.pu()
 player.ht()
-player.setpos(0, -270)
+player.setpos(0, -170)
 player.st()
 
 #Create "fruit"
@@ -119,10 +118,10 @@ def checkBounds():
   y = player.ycor()
   global speed
   global done
-  if x < -390 or x > 540:
+  if x < -190 or x > 190:
     speed = 0
     done = True
-  if y < -290 or y > 290:
+  if y < -190 or y > 190:
     speed = 0
     done = True
     
@@ -132,15 +131,15 @@ def checkBounds():
 def addFruit():
   fruit.ht()
   rand = random.Random()
-  x = random.Random.randint(rand, -39, 54) * 10
-  y = random.Random.randint(rand, -29, 29) * 10
+  x = random.Random.randint(rand, -19, 19) * 10
+  y = random.Random.randint(rand, -19, 19) * 10
   fruit.setpos(x, y)
   fruit.st()
   
 def eatFruit():
   global score
   drawScore.clear()
-  drawScore._write("Score: " + str(score), align="left", font=(20))
+  drawScore._write("Score: " + str(score), align="left", font=("Arial", 24, "normal"))
   
 def movePlayer():
   global printedParts
@@ -177,14 +176,14 @@ def gameOver():
   draw.color("white")
   draw.speed(0)
   draw.pensize(10)
-  draw.setpos(100, 0)
+  draw.setpos(0, 0)
   draw.pd()
   draw._write("Loser", align="center", font=("Arial", 72, "normal"))
   draw.pu()
-  draw.setpos(100, -50)
+  draw.setpos(0, -50)
   draw.write("Final Score: " + str(score), align="center", font=("Arial", 32, "normal"))
   draw.pu()
-  draw.setpos(100, -100)
+  draw.setpos(0, -100)
   draw.write("Press Enter to Restart", align="Center", font=("Arial", 24, "normal"))
   draw.ht()
   
@@ -201,7 +200,7 @@ def restart():
   player.pu()
   player.ht()
   player.speed(0)
-  player.setpos(0, -270)
+  player.setpos(0, -170)
   player.setheading(0)
   player.st()
   speed = 0.75
