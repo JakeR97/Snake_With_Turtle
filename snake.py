@@ -49,6 +49,28 @@ for x in range(4):
   border.fd(400)
   border.rt(90)
 border.ht()
+border.pu()
+border.setpos(-300, 0)
+
+#Add pictures to sides
+image = "Snake.gif"
+gameWindow.register_shape(image)
+pic1 = turtle.Turtle()
+pic1.shape(image)
+pic1.st()
+pic1.pu()
+pic1.resizemode("user")
+pic1.shapesize(0.5, 0.5, 1)
+pic1.setpos(-400, 0)
+pic2 = turtle.Turtle()
+pic2.shape(image)
+pic2.st()
+pic2.pu()
+pic2.resizemode("user")
+pic2.shapesize(0.5, 0.5, 1)
+pic2.setpos(400, 0)
+
+
 
 #Draw score
 drawScore = turtle.Turtle()
@@ -56,9 +78,9 @@ drawScore.ht()
 drawScore.color("white")
 drawScore.speed(0)
 drawScore.pu()
-drawScore.setpos(-450, 200)
+drawScore.setpos(0, 250)
 drawScore.pd()
-drawScore._write("Score: " + str(score), align="left", font=("Arial", 24, "normal"))
+drawScore._write("Score: " + str(score), align="center", font=("Arial", 24, "normal"))
 
 #Create "player"
 player = turtle.Turtle()
@@ -139,7 +161,7 @@ def addFruit():
 def eatFruit():
   global score
   drawScore.clear()
-  drawScore._write("Score: " + str(score), align="left", font=("Arial", 24, "normal"))
+  drawScore._write("Score: " + str(score), align="center", font=("Arial", 24, "normal"))
   
 def movePlayer():
   global printedParts
@@ -207,7 +229,7 @@ def restart():
   player.speed(speed)
   drawScore.clear()
   player.clearstamps(n=None)
-  drawScore._write("Score: " + str(score), align="left", font=(20))
+  drawScore._write("Score: " + str(score), align="center", font=(20))
   done = False
   run()
   
@@ -219,7 +241,7 @@ def run():
     movePlayer()
     checkFruit()
     checkBounds()
-    checkCollision()  
+    checkCollision()       
 
 #Create key-binds
 gameWindow.listen()
