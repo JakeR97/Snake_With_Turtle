@@ -13,11 +13,11 @@ gameWindow.mode(mode="logo")
 #Misc variables
 fruit = turtle.Turtle()
 global done
-global speed
+global moveDist
 global score
 global printedParts
 global playerBody
-speed = 0.75
+moveDist = 0.75
 done = False
 score = 0
 printedParts = 0
@@ -106,31 +106,31 @@ fruit.shapesize(.4, .4, 1)
 #Define function
 def right():
   if (player.heading() != 270):
-    global speed
+    global moveDist
     player.speed(0)
     player.seth(90)
-    player.speed(speed)
+    player.speed(moveDist)
   
 def left():
   if (player.heading() != 90):
-    global speed
+    global moveDist
     player.speed(0)
     player.seth(270)
-    player.speed(speed)
+    player.speed(moveDist)
   
 def up():
   if (player.heading() != 180):
-    global speed
+    global moveDist
     player.speed(0)
     player.seth(0)
-    player.speed(speed)
+    player.speed(moveDist)
   
 def down():
   if (player.heading() != 0):
-    global speed
+    global moveDist
     player.speed(0)
     player.seth(180)
-    player.speed(speed)
+    player.speed(moveDist)
   
 def isCollidedWith(a, b):
   return (abs(a.xcor()-b.xcor()) < 5 and abs(a.ycor()-b.ycor()) < 5)
@@ -138,13 +138,13 @@ def isCollidedWith(a, b):
 def checkBounds():
   x = player.xcor()
   y = player.ycor()
-  global speed
+  global moveDist
   global done
-  if x < -190 or x > 190:
-    speed = 0
+  if x < -195 or x > 195:
+    moveDist = 0
     done = True
-  if y < -190 or y > 190:
-    speed = 0
+  if y < -195 or y > 195:
+    moveDist = 0
     done = True
     
   if done == True:
@@ -187,8 +187,7 @@ def checkFruit():
 def checkCollision():
   for part in playerBody:
     if (isCollidedWith(player, part)):
-      gameOver()
-    
+      gameOver()    
   
 def gameOver():
   #Set up writing turtle
@@ -211,7 +210,7 @@ def gameOver():
   
 def restart():
   global done
-  global speed
+  global moveDist
   global score
   global playerBody
   global printedParts
@@ -225,8 +224,8 @@ def restart():
   player.setpos(0, -170)
   player.setheading(0)
   player.st()
-  speed = 0.75
-  player.speed(speed)
+  moveDist = 0.75
+  player.speed(moveDist)
   drawScore.clear()
   player.clearstamps(n=None)
   drawScore._write("Score: " + str(score), align="center", font=(20))
@@ -236,7 +235,7 @@ def restart():
 def run():
   global done
   global score
-  global speed
+  global moveDist
   while done == False:
     movePlayer()
     checkFruit()
